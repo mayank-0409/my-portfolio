@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name — Software Builder</title>
+  <meta name="description" content="Portfolio of a software builder based in Mumbai, crafting fast, thoughtful web products." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111'/%3E%3Cpath d='M9 22V10l7 7 7-7v12' stroke='%23c6f432' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <svg viewBox="0 0 32 32" width="64" height="64" fill="none">
+      <path class="preloader__path" d="M9 22V10l7 7 7-7v12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="preloader__count" id="loaderCount">0%</span>
+  </div>
+
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#top" class="logo" aria-label="Home">
+        <svg viewBox="0 0 32 32" width="30" height="30" fill="none" aria-hidden="true">
+          <rect x="1.5" y="1.5" width="29" height="29" rx="8" stroke="currentColor" stroke-width="2"/>
+          <path d="M9 22V10l7 7 7-7v12" stroke="var(--accent)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>yourname<span class="muted">.dev</span></span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#showreel">Reel</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="header__actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle color theme">
+          <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top">
+      <video class="hero__video" id="heroVideo" autoplay muted loop playsinline preload="auto" poster="media/hero-poster.jpg" aria-hidden="true">
+        <source src="media/hero.mp4" type="video/mp4" />
+      </video>
+      <div class="hero__veil" aria-hidden="true"></div>
+      <canvas id="grid" aria-hidden="true"></canvas>
+      <div class="container hero__inner">
+        <p class="eyebrow reveal"><span class="dot"></span> Available for freelance &amp; full-time — Mumbai, IN</p>
+        <h1 class="hero__title">
+          <span class="line"><span class="word">I</span> <span class="word">build</span> <span class="word">software</span></span>
+          <span class="line"><span class="word">that</span> <span class="word">feels</span> <span class="word"><span class="accent-text" id="typed">fast</span><span class="caret">_</span></span></span>
+        </h1>
+        <p class="hero__lead reveal">
+          Hi, I'm <strong>Your Name</strong> — a software builder who turns rough ideas into
+          shipped products. I work across the stack, from pixel-perfect interfaces to the APIs behind them.
+        </p>
+        <div class="hero__cta reveal">
+          <a href="#projects" class="btn btn--primary magnetic">See my work
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#contact" class="btn btn--ghost magnetic">Get in touch</a>
+        </div>
+
+        <dl class="stats reveal">
+          <div><dt><span data-count="4">0</span>+</dt><dd>Years building</dd></div>
+          <div><dt><span data-count="30">0</span>+</dt><dd>Projects shipped</dd></div>
+          <div><dt><span data-count="15">0</span>+</dt><dd>Happy clients</dd></div>
+        </dl>
+      </div>
+      <a href="#about" class="scroll-cue" aria-label="Scroll to about"><span></span></a>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Design</span><i>✦</i><span>Develop</span><i>✦</i><span>Deploy</span><i>✦</i><span>Iterate</span><i>✦</i>
+        <span>Design</span><i>✦</i><span>Develop</span><i>✦</i><span>Deploy</span><i>✦</i><span>Iterate</span><i>✦</i>
+      </div>
+    </div>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section" id="about">
+      <div class="container about">
+        <div class="section__head reveal">
+          <span class="index">01</span>
+          <h2>About</h2>
+        </div>
+        <div class="about__grid">
+          <div class="about__photo reveal">
+            <div class="avatar" aria-label="Profile initials">YN</div>
+            <div class="code-card">
+              <pre><code><span class="k">const</span> me = {
+  role: <span class="s">"Software Builder"</span>,
+  based: <span class="s">"Mumbai"</span>,
+  loves: [<span class="s">"clean code"</span>, <span class="s">"chai"</span>],
+  shipping: <span class="b">true</span>,
+};</code></pre>
+            </div>
+          </div>
+          <div class="about__text reveal">
+            <p class="big">
+              I care about the details that make software feel effortless — load times,
+              micro-interactions, and code that the next developer will thank you for.
+            </p>
+            <p>
+              I started out tinkering with HTML pages and slowly fell in love with building
+              complete products. Today I design, develop and deploy web apps end to end,
+              working closely with founders and teams to go from whiteboard to production.
+            </p>
+            <p>
+              When I'm not coding, you'll find me exploring new tools, contributing to
+              open source, or walking along Marine Drive.
+            </p>
+            <a href="#" class="link-arrow">Download résumé →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SHOWREEL ============ -->
+    <section class="section showreel" id="showreel">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="index">✦</span>
+          <h2>Showreel</h2>
+        </div>
+        <div class="reel" id="reel">
+          <video class="reel__video" id="reelVideo" muted loop playsinline preload="metadata" poster="media/hero-poster.jpg">
+            <source src="media/reel.mp4" type="video/mp4" />
+          </video>
+          <button class="reel__play" id="reelPlay" aria-label="Play showreel">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <span>Play reel</span>
+          </button>
+          <div class="reel__bar"><span id="reelProgress"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="index">02</span>
+          <h2>Skills &amp; Tools</h2>
+        </div>
+        <div class="skills">
+          <article class="skill-card reveal">
+            <h3>Frontend</h3>
+            <ul class="tags"><li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>TypeScript</li><li>React</li><li>Next.js</li><li>Tailwind</li></ul>
+          </article>
+          <article class="skill-card reveal">
+            <h3>Backend</h3>
+            <ul class="tags"><li>Node.js</li><li>Express</li><li>Python</li><li>FastAPI</li><li>REST</li><li>GraphQL</li></ul>
+          </article>
+          <article class="skill-card reveal">
+            <h3>Data &amp; Cloud</h3>
+            <ul class="tags"><li>PostgreSQL</li><li>MongoDB</li><li>Redis</li><li>Docker</li><li>AWS</li><li>Vercel</li></ul>
+          </article>
+          <article class="skill-card reveal">
+            <h3>Workflow</h3>
+            <ul class="tags"><li>Git</li><li>GitHub Actions</li><li>Figma</li><li>Jest</li><li>Agile</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section__head section__head--row reveal">
+          <div><span class="index">03</span><h2>Selected Work</h2></div>
+          <div class="filters" role="tablist" aria-label="Filter projects">
+            <button class="filter is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+            <button class="filter" data-filter="web" role="tab" aria-selected="false">Web</button>
+            <button class="filter" data-filter="app" role="tab" aria-selected="false">Apps</button>
+            <button class="filter" data-filter="tool" role="tab" aria-selected="false">Tools</button>
+          </div>
+        </div>
+
+        <div class="projects" id="projectGrid">
+          <article class="project reveal" data-cat="web">
+            <div class="project__thumb" style="--h1:#c6f432;--h2:#1f7a5c">
+              <video class="thumb-video" muted loop playsinline preload="none" data-src="media/p1.mp4"></video>
+              <span>ShopLite</span>
+            </div>
+            <div class="project__body">
+              <div class="project__meta"><span>E-commerce</span><span>2026</span></div>
+              <h3>ShopLite Storefront</h3>
+              <p>A lightning-fast headless storefront with cart, checkout and UPI payments. Lighthouse score of 99.</p>
+              <ul class="tags tags--sm"><li>Next.js</li><li>Stripe</li><li>Postgres</li></ul>
+              <div class="project__links"><a href="#">Live ↗</a><a href="#">Code ↗</a></div>
+            </div>
+          </article>
+
+          <article class="project reveal" data-cat="app">
+            <div class="project__thumb" style="--h1:#ff7a59;--h2:#6b2bd9">
+              <video class="thumb-video" muted loop playsinline preload="none" data-src="media/p2.mp4"></video>
+              <span>TaskFlow</span>
+            </div>
+            <div class="project__body">
+              <div class="project__meta"><span>Productivity</span><span>2025</span></div>
+              <h3>TaskFlow</h3>
+              <p>Real-time kanban for small teams with drag-and-drop, live cursors and offline sync.</p>
+              <ul class="tags tags--sm"><li>React</li><li>WebSocket</li><li>Redis</li></ul>
+              <div class="project__links"><a href="#">Live ↗</a><a href="#">Code ↗</a></div>
+            </div>
+          </article>
+
+          <article class="project reveal" data-cat="tool">
+            <div class="project__thumb" style="--h1:#4cc9f0;--h2:#1b3b8a">
+              <video class="thumb-video" muted loop playsinline preload="none" data-src="media/p3.mp4"></video>
+              <span>logpipe</span>
+            </div>
+            <div class="project__body">
+              <div class="project__meta"><span>Developer tool</span><span>2025</span></div>
+              <h3>logpipe CLI</h3>
+              <p>An open-source CLI that tails, filters and pretty-prints logs from any service. 1.2k GitHub stars.</p>
+              <ul class="tags tags--sm"><li>Node.js</li><li>CLI</li><li>Open Source</li></ul>
+              <div class="project__links"><a href="#">Code ↗</a></div>
+            </div>
+          </article>
+
+          <article class="project reveal" data-cat="web">
+            <div class="project__thumb" style="--h1:#f9c74f;--h2:#b5179e">
+              <video class="thumb-video" muted loop playsinline preload="none" data-src="media/p4.mp4"></video>
+              <span>Studio</span>
+            </div>
+            <div class="project__body">
+              <div class="project__meta"><span>Agency site</span><span>2024</span></div>
+              <h3>Studio Nine</h3>
+              <p>An animated marketing site for a design studio with a custom CMS and smooth page transitions.</p>
+              <ul class="tags tags--sm"><li>Astro</li><li>GSAP</li><li>Sanity</li></ul>
+              <div class="project__links"><a href="#">Live ↗</a></div>
+            </div>
+          </article>
+
+          <article class="project reveal" data-cat="app">
+            <div class="project__thumb" style="--h1:#90e0ef;--h2:#2a9d8f">
+              <video class="thumb-video" muted loop playsinline preload="none" data-src="media/p5.mp4"></video>
+              <span>FitTrack</span>
+            </div>
+            <div class="project__body">
+              <div class="project__meta"><span>Health</span><span>2024</span></div>
+              <h3>FitTrack</h3>
+              <p>A habit and workout tracker PWA with streaks, charts and push reminders.</p>
+              <ul class="tags tags--sm"><li>PWA</li><li>Chart.js</li><li>Firebase</li></ul>
+              <div class="project__links"><a href="#">Live ↗</a><a href="#">Code ↗</a></div>
+            </div>
+          </article>
+
+          <article class="project reveal" data-cat="tool">
+            <div class="project__thumb" style="--h1:#e9ff70;--h2:#3a5a40">
+              <video class="thumb-video" muted loop playsinline preload="none" data-src="media/p6.mp4"></video>
+              <span>api&gt;kit</span>
+            </div>
+            <div class="project__body">
+              <div class="project__meta"><span>Library</span><span>2023</span></div>
+              <h3>apikit</h3>
+              <p>A tiny typed fetch wrapper with retries, caching and request cancellation. Under 2 KB gzipped.</p>
+              <ul class="tags tags--sm"><li>TypeScript</li><li>npm</li></ul>
+              <div class="project__links"><a href="#">Code ↗</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="index">04</span>
+          <h2>Experience</h2>
+        </div>
+        <ol class="timeline">
+          <li class="reveal">
+            <span class="timeline__date">2025 — Present</span>
+            <div>
+              <h3>Senior Software Engineer · <span class="muted">Company A</span></h3>
+              <p>Lead the web platform team, rebuilt the checkout flow and cut page load time by 45%.</p>
+            </div>
+          </li>
+          <li class="reveal">
+            <span class="timeline__date">2023 — 2025</span>
+            <div>
+              <h3>Full-Stack Developer · <span class="muted">Company B</span></h3>
+              <p>Shipped 10+ features for a SaaS dashboard used by 50k users; introduced CI/CD and testing.</p>
+            </div>
+          </li>
+          <li class="reveal">
+            <span class="timeline__date">2022 — 2023</span>
+            <div>
+              <h3>Freelance Developer · <span class="muted">Self-employed</span></h3>
+              <p>Built websites and web apps for startups and local businesses across India.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section contact" id="contact">
+      <div class="container contact__grid">
+        <div class="reveal">
+          <span class="index">05</span>
+          <h2 class="contact__title">Let's build<br />something <span class="accent-text">great.</span></h2>
+          <p class="muted">Have a project in mind or just want to say hi? My inbox is always open.</p>
+          <button class="email-copy" id="copyEmail" data-email="hello@yourname.dev">
+            <span>hello@yourname.dev</span>
+            <small id="copyLabel">Click to copy</small>
+          </button>
+          <ul class="socials">
+            <li><a href="#" aria-label="GitHub">GitHub</a></li>
+            <li><a href="#" aria-label="LinkedIn">LinkedIn</a></li>
+            <li><a href="#" aria-label="X / Twitter">X</a></li>
+          </ul>
+        </div>
+
+        <form class="form reveal" id="contactForm" novalidate>
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" required />
+            <small class="error"></small>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required />
+            <small class="error"></small>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+            <small class="error"></small>
+          </div>
+          <button type="submit" class="btn btn--primary btn--full">Send message</button>
+          <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="year"></span> Your Name. Built with HTML, CSS &amp; JS.</p>
+      <a href="#top" class="link-arrow">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
