@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name — Aspiring Cybersecurity Analyst</title>
+  <meta name="description" content="Portfolio of a beginner cybersecurity learner: labs, CTF write-ups, certifications and home-lab projects." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2307090c'/%3E%3Cpath d='M16 5l9 3.5v7c0 5.5-3.8 9.5-9 11.5-5.2-2-9-6-9-11.5v-7z' stroke='%2300ff9c' stroke-width='2' fill='none'/%3E%3Cpath d='M12.5 16l2.5 2.5 4.5-5' stroke='%2300ff9c' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Boot screen -->
+  <div class="boot" id="boot" aria-hidden="true">
+    <div class="boot__inner">
+      <pre class="boot__log" id="bootLog"></pre>
+      <div class="boot__bar"><span id="bootBar"></span></div>
+    </div>
+  </div>
+
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#top" class="logo" aria-label="Home">
+        <svg viewBox="0 0 32 32" width="30" height="30" fill="none" aria-hidden="true">
+          <path class="logo__shield" d="M16 3.5l10 3.8v7.6c0 6-4.2 10.4-10 12.6C10.2 25.3 6 20.9 6 14.9V7.3z" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M12 15.5l3 3 5-5.5" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>root<span class="accent">@</span>yourname</span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Primary">
+        <a href="#about"><span>01.</span>About</a>
+        <a href="#skills"><span>02.</span>Skills</a>
+        <a href="#labs"><span>03.</span>Labs</a>
+        <a href="#certs"><span>04.</span>Certs</a>
+        <a href="#journey"><span>05.</span>Journey</a>
+        <a href="#contact"><span>06.</span>Contact</a>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top">
+      <video class="hero__video" id="heroVideo" autoplay muted loop playsinline preload="auto" poster="media/poster.jpg" aria-hidden="true">
+        <source src="media/hero.mp4" type="video/mp4" />
+      </video>
+      <canvas id="matrix" aria-hidden="true"></canvas>
+      <div class="hero__veil" aria-hidden="true"></div>
+
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <p class="tag reveal"><span class="pulse"></span> status: <b>learning &amp; open to internships</b></p>
+          <h1 class="hero__title">
+            <span class="l"><span class="glitch" data-text="Defending">Defending</span></span>
+            <span class="l">the digital</span>
+            <span class="l"><span class="accent">world</span>, one lab</span>
+            <span class="l">at a time.</span>
+          </h1>
+          <p class="hero__lead reveal">
+            Hi, I'm <strong>Your Name</strong> — a cybersecurity beginner from Mumbai learning
+            <span class="typed" id="typed">network security</span><span class="caret">▍</span>
+          </p>
+          <div class="hero__cta reveal">
+            <a href="#labs" class="btn btn--primary">
+              <span>View my labs</span>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href="#contact" class="btn btn--ghost"><span>Contact me</span></a>
+          </div>
+        </div>
+
+        <!-- Interactive terminal -->
+        <div class="terminal reveal" id="terminal" aria-label="Interactive terminal">
+          <div class="terminal__bar">
+            <i></i><i></i><i></i>
+            <span>guest@portfolio: ~</span>
+          </div>
+          <div class="terminal__body" id="termBody">
+            <div class="terminal__out" id="termOut" aria-live="polite"></div>
+            <form class="terminal__line" id="termForm" autocomplete="off">
+              <label for="termInput"><span class="accent">guest@portfolio</span>:<span class="blue">~</span>$</label>
+              <input id="termInput" type="text" spellcheck="false" aria-label="Type a terminal command" />
+            </form>
+          </div>
+          <div class="terminal__hints">
+            <button data-cmd="help">help</button>
+            <button data-cmd="whoami">whoami</button>
+            <button data-cmd="skills">skills</button>
+            <button data-cmd="nmap">nmap</button>
+            <button data-cmd="clear">clear</button>
+          </div>
+        </div>
+      </div>
+
+      <ul class="hero__stats container">
+        <li class="reveal"><b data-count="120">0</b><span>TryHackMe rooms</span></li>
+        <li class="reveal"><b data-count="35">0</b><span>CTF flags captured</span></li>
+        <li class="reveal"><b data-count="3">0</b><span>Certifications</span></li>
+        <li class="reveal"><b data-count="250">0</b><span>Hours in the lab</span></li>
+      </ul>
+    </section>
+
+    <!-- Ticker -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        <span>[+] Network Security</span><span>[+] Linux</span><span>[+] Wireshark</span><span>[+] SIEM</span><span>[+] OWASP Top 10</span><span>[+] Incident Response</span><span>[+] Python</span><span>[+] Threat Hunting</span>
+        <span>[+] Network Security</span><span>[+] Linux</span><span>[+] Wireshark</span><span>[+] SIEM</span><span>[+] OWASP Top 10</span><span>[+] Incident Response</span><span>[+] Python</span><span>[+] Threat Hunting</span>
+      </div>
+    </div>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section" id="about">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="section__num">01</span>
+          <h2>whoami</h2>
+          <span class="section__line"></span>
+        </header>
+
+        <div class="about">
+          <div class="about__text reveal">
+            <p class="lead">
+              I'm a curious learner who fell down the security rabbit hole after wondering
+              <em class="accent-em">"how do hackers actually get in?"</em>
+            </p>
+            <p>
+              Today I spend my evenings breaking (and fixing) things in my home lab, solving
+              CTF challenges, and studying for certifications. My goal is to start my career
+              as a <strong>SOC Analyst</strong> and grow into penetration testing.
+            </p>
+            <p>
+              I believe the best way to learn security is hands-on — so everything on this
+              page is something I've actually built, broken or documented.
+            </p>
+            <ul class="about__facts">
+              <li><span>location</span>Mumbai, IN</li>
+              <li><span>focus</span>Blue team / SOC</li>
+              <li><span>currently</span>CompTIA Security+</li>
+              <li><span>os</span>Kali &amp; Ubuntu</li>
+            </ul>
+          </div>
+
+          <div class="about__visual reveal">
+            <div class="radar" aria-hidden="true">
+              <div class="radar__sweep"></div>
+              <span class="radar__blip" style="--x:28%;--y:34%"></span>
+              <span class="radar__blip" style="--x:66%;--y:24%;--d:.8s"></span>
+              <span class="radar__blip" style="--x:58%;--y:70%;--d:1.6s"></span>
+              <span class="radar__blip" style="--x:22%;--y:66%;--d:2.4s"></span>
+              <div class="radar__center">
+                <svg viewBox="0 0 32 32" width="56" height="56" fill="none">
+                  <path d="M16 3.5l10 3.8v7.6c0 6-4.2 10.4-10 12.6C10.2 25.3 6 20.9 6 14.9V7.3z" stroke="currentColor" stroke-width="1.6"/>
+                  <path d="M12 15.5l3 3 5-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+            <p class="radar__caption">scanning for opportunities<span class="dots"></span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="section" id="skills">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="section__num">02</span>
+          <h2>skills.txt</h2>
+          <span class="section__line"></span>
+        </header>
+
+        <div class="skills">
+          <div class="skill-bars reveal">
+            <h3>Core skills</h3>
+            <div class="bar" style="--v:80%"><div class="bar__label"><span>Networking (TCP/IP, DNS, HTTP)</span><b>80%</b></div><div class="bar__track"><i></i></div></div>
+            <div class="bar" style="--v:75%"><div class="bar__label"><span>Linux command line</span><b>75%</b></div><div class="bar__track"><i></i></div></div>
+            <div class="bar" style="--v:65%"><div class="bar__label"><span>Traffic analysis (Wireshark)</span><b>65%</b></div><div class="bar__track"><i></i></div></div>
+            <div class="bar" style="--v:60%"><div class="bar__label"><span>Web security (OWASP Top 10)</span><b>60%</b></div><div class="bar__track"><i></i></div></div>
+            <div class="bar" style="--v:55%"><div class="bar__label"><span>Python scripting</span><b>55%</b></div><div class="bar__track"><i></i></div></div>
+            <div class="bar" style="--v:45%"><div class="bar__label"><span>SIEM (Splunk / Wazuh)</span><b>45%</b></div><div class="bar__track"><i></i></div></div>
+          </div>
+
+          <div class="tools">
+            <article class="tool-card reveal">
+              <div class="tool-card__icon">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+              </div>
+              <h3>Network</h3>
+              <p>Nmap, Wireshark, tcpdump, Netcat</p>
+            </article>
+            <article class="tool-card reveal">
+              <div class="tool-card__icon">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3M12 15h5"/></svg>
+              </div>
+              <h3>Offensive</h3>
+              <p>Burp Suite, Metasploit, Hydra, Gobuster</p>
+            </article>
+            <article class="tool-card reveal">
+              <div class="tool-card__icon">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+              </div>
+              <h3>Defensive</h3>
+              <p>Splunk, Wazuh, Snort, Sysmon</p>
+            </article>
+            <article class="tool-card reveal">
+              <div class="tool-card__icon">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg>
+              </div>
+              <h3>Scripting</h3>
+              <p>Python, Bash, PowerShell basics</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LABS ============ -->
+    <section class="section" id="labs">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="section__num">03</span>
+          <h2>labs &amp; projects</h2>
+          <span class="section__line"></span>
+        </header>
+
+        <div class="filters reveal" role="tablist" aria-label="Filter projects">
+          <button class="filter is-active" data-filter="all" role="tab" aria-selected="true">./all</button>
+          <button class="filter" data-filter="blue" role="tab" aria-selected="false">./blue-team</button>
+          <button class="filter" data-filter="red" role="tab" aria-selected="false">./red-team</button>
+          <button class="filter" data-filter="tool" role="tab" aria-selected="false">./tools</button>
+        </div>
+
+        <div class="labs" id="labGrid">
+          <article class="lab reveal" data-cat="blue">
+            <div class="lab__media">
+              <video muted loop playsinline preload="none" data-src="media/lab1.mp4" poster="media/lab1.jpg"></video>
+              <span class="lab__badge">Blue Team</span>
+              <span class="lab__play" aria-hidden="true">▶ hover to play</span>
+            </div>
+            <div class="lab__body">
+              <h3>Home SOC Lab with Wazuh</h3>
+              <p>Built a virtual lab with a Wazuh SIEM, a Windows 10 endpoint and Kali attacker. Wrote custom rules to detect brute-force and suspicious PowerShell.</p>
+              <ul class="chips"><li>Wazuh</li><li>VirtualBox</li><li>Sysmon</li></ul>
+              <div class="lab__links"><a href="#">write-up →</a><a href="#">github →</a></div>
+            </div>
+          </article>
+
+          <article class="lab reveal" data-cat="red">
+            <div class="lab__media">
+              <video muted loop playsinline preload="none" data-src="media/lab2.mp4" poster="media/lab2.jpg"></video>
+              <span class="lab__badge lab__badge--red">Red Team</span>
+              <span class="lab__play" aria-hidden="true">▶ hover to play</span>
+            </div>
+            <div class="lab__body">
+              <h3>TryHackMe CTF Write-ups</h3>
+              <p>Step-by-step write-ups for 20+ beginner rooms covering enumeration, privilege escalation and web exploitation.</p>
+              <ul class="chips"><li>Nmap</li><li>Burp Suite</li><li>Linux PrivEsc</li></ul>
+              <div class="lab__links"><a href="#">read blog →</a></div>
+            </div>
+          </article>
+
+          <article class="lab reveal" data-cat="tool">
+            <div class="lab__media">
+              <video muted loop playsinline preload="none" data-src="media/lab3.mp4" poster="media/lab3.jpg"></video>
+              <span class="lab__badge lab__badge--tool">Tool</span>
+              <span class="lab__play" aria-hidden="true">▶ hover to play</span>
+            </div>
+            <div class="lab__body">
+              <h3>Python Port Scanner</h3>
+              <p>A multi-threaded TCP port scanner with banner grabbing and CSV export, written to understand how Nmap works under the hood.</p>
+              <ul class="chips"><li>Python</li><li>Sockets</li><li>Threading</li></ul>
+              <div class="lab__links"><a href="#">github →</a></div>
+            </div>
+          </article>
+
+          <article class="lab reveal" data-cat="blue">
+            <div class="lab__media">
+              <video muted loop playsinline preload="none" data-src="media/lab4.mp4" poster="media/lab4.jpg"></video>
+              <span class="lab__badge">Blue Team</span>
+              <span class="lab__play" aria-hidden="true">▶ hover to play</span>
+            </div>
+            <div class="lab__body">
+              <h3>Phishing Email Analysis</h3>
+              <p>Analysed real-world phishing samples: header inspection, URL sandboxing and IOC extraction, documented as an incident report.</p>
+              <ul class="chips"><li>PhishTool</li><li>VirusTotal</li><li>IOC</li></ul>
+              <div class="lab__links"><a href="#">report →</a></div>
+            </div>
+          </article>
+
+          <article class="lab reveal" data-cat="red">
+            <div class="lab__media">
+              <video muted loop playsinline preload="none" data-src="media/lab5.mp4" poster="media/lab5.jpg"></video>
+              <span class="lab__badge lab__badge--red">Red Team</span>
+              <span class="lab__play" aria-hidden="true">▶ hover to play</span>
+            </div>
+            <div class="lab__body">
+              <h3>DVWA Web Vulnerabilities</h3>
+              <p>Practised SQL injection, XSS and CSRF on Damn Vulnerable Web App — and wrote the fix for each one.</p>
+              <ul class="chips"><li>OWASP</li><li>SQLi</li><li>XSS</li></ul>
+              <div class="lab__links"><a href="#">write-up →</a></div>
+            </div>
+          </article>
+
+          <article class="lab reveal" data-cat="tool">
+            <div class="lab__media">
+              <video muted loop playsinline preload="none" data-src="media/lab6.mp4" poster="media/lab6.jpg"></video>
+              <span class="lab__badge lab__badge--tool">Tool</span>
+              <span class="lab__play" aria-hidden="true">▶ hover to play</span>
+            </div>
+            <div class="lab__body">
+              <h3>Password Strength Checker</h3>
+              <p>A small web tool that estimates password entropy and checks it against common breached-password lists.</p>
+              <ul class="chips"><li>JavaScript</li><li>Entropy</li><li>HIBP API</li></ul>
+              <div class="lab__links"><a href="#">live demo →</a><a href="#">github →</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VIDEO FEATURE ============ -->
+    <section class="section feature" id="demo">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="section__num">▶</span>
+          <h2>lab walkthrough</h2>
+          <span class="section__line"></span>
+        </header>
+        <div class="player reveal" id="player">
+          <video id="demoVideo" playsinline preload="metadata" poster="media/poster.jpg" muted>
+            <source src="media/demo.mp4" type="video/mp4" />
+          </video>
+          <div class="player__hud" aria-hidden="true">
+            <span class="rec">● REC</span>
+            <span id="hudTime">00:00</span>
+          </div>
+          <button class="player__big" id="playBig" aria-label="Play walkthrough video">
+            <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+          <div class="player__controls">
+            <button id="playBtn" aria-label="Play">
+              <svg class="i-play" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              <svg class="i-pause" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+            </button>
+            <div class="player__seek" id="seek" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0"><span id="seekFill"></span></div>
+            <button id="fsBtn" aria-label="Expand video">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+            </button>
+          </div>
+        </div>
+        <p class="feature__caption reveal">A quick visual tour of my home-lab network: attacker, SIEM and monitored endpoints.</p>
+      </div>
+    </section>
+
+    <!-- ============ CERTS ============ -->
+    <section class="section" id="certs">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="section__num">04</span>
+          <h2>certifications</h2>
+          <span class="section__line"></span>
+        </header>
+        <div class="certs">
+          <article class="cert reveal">
+            <div class="cert__status cert__status--done">✔ earned</div>
+            <h3>Google Cybersecurity Certificate</h3>
+            <p>Coursera · 2026</p>
+          </article>
+          <article class="cert reveal">
+            <div class="cert__status cert__status--done">✔ earned</div>
+            <h3>Cisco Introduction to Cybersecurity</h3>
+            <p>Cisco NetAcad · 2025</p>
+          </article>
+          <article class="cert reveal">
+            <div class="cert__status cert__status--done">✔ earned</div>
+            <h3>TryHackMe Pre-Security Path</h3>
+            <p>TryHackMe · 2025</p>
+          </article>
+          <article class="cert reveal">
+            <div class="cert__status cert__status--wip">◌ in progress</div>
+            <h3>CompTIA Security+</h3>
+            <p>Target: 2027</p>
+            <div class="cert__progress" style="--v:60%"><i></i></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ JOURNEY ============ -->
+    <section class="section" id="journey">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="section__num">05</span>
+          <h2>learning journey</h2>
+          <span class="section__line"></span>
+        </header>
+        <ol class="journey" id="journeyList">
+          <li class="reveal">
+            <time>2024</time>
+            <div><h3>Hello, World</h3><p>Learned networking fundamentals and Linux basics. Set up my first Kali Linux VM.</p></div>
+          </li>
+          <li class="reveal">
+            <time>2025</time>
+            <div><h3>First flags</h3><p>Started TryHackMe, completed the Pre-Security path and captured my first CTF flags.</p></div>
+          </li>
+          <li class="reveal">
+            <time>2026</time>
+            <div><h3>Building the lab</h3><p>Built a home SOC lab, earned the Google Cybersecurity Certificate and began writing public write-ups.</p></div>
+          </li>
+          <li class="reveal is-next">
+            <time>next</time>
+            <div><h3>First role</h3><p>Pass Security+ and land a SOC Analyst internship or junior role.</p></div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section contact" id="contact">
+      <div class="container contact__grid">
+        <div class="reveal">
+          <header class="section__head">
+            <span class="section__num">06</span>
+            <h2>./contact</h2>
+          </header>
+          <p class="contact__lead">Looking for an eager learner for an internship, junior role, or a CTF team? Let's connect.</p>
+          <a class="contact__mail" href="mailto:hello@yourname.dev">hello@yourname.dev</a>
+          <ul class="socials">
+            <li><a href="#">GitHub</a></li>
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">TryHackMe</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+
+        <form class="form reveal" id="contactForm" novalidate>
+          <div class="form__head"><span class="accent">$</span> send_message --secure</div>
+          <div class="field">
+            <label for="name">name</label>
+            <input id="name" name="name" type="text" placeholder="Jane Doe" required />
+            <small class="error"></small>
+          </div>
+          <div class="field">
+            <label for="email">email</label>
+            <input id="email" name="email" type="email" placeholder="jane@company.com" required />
+            <small class="error"></small>
+          </div>
+          <div class="field">
+            <label for="message">message</label>
+            <textarea id="message" name="message" rows="4" placeholder="Hi! I'd like to talk about..." required></textarea>
+            <small class="error"></small>
+          </div>
+          <button type="submit" class="btn btn--primary btn--full"><span>Encrypt &amp; send</span></button>
+          <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="year"></span> Your Name · Built with HTML, CSS &amp; JS · Hack responsibly.</p>
+      <a href="#top">↑ back to top</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
